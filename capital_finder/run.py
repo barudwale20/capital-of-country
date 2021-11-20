@@ -9,9 +9,10 @@ def get_capital(country):
     try:
         file_path = "/".join(str(Path(__file__).absolute()).split("/")[:-1]) + "/resources/capital.json"
         data = json.load(open(file_path, ))
-        available_countries = data.keys()
-        if country not in available_countries:
+        available_countries = list(data.keys())
+        if country.lower() not in available_countries:
             print("Country name might be invalid or not available in our dataset!")
+            return
         art = pyfiglet.figlet_format(data[country.lower()])
         print(art)
     except Exception as e:
@@ -29,8 +30,8 @@ def load_arguments():
             raise Exception("Please provide counrty parameter. \ne.g. --country India")
         return args
     except Exception as e:
-        print(traceback.format_exc())
-        raise e
+        print("Please provide counrty parameter. \ne.g. --country India")
+        raise Exception("Invalid input!")
 
 
 def main():
