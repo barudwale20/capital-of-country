@@ -36,7 +36,7 @@ def load_arguments():
 def main():
     try:
         args = load_arguments()
-        get_capital(args.capital)
+        get_capital(args.country)
     except Exception as e:
         print(traceback.format_exc())
         raise e
